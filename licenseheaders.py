@@ -65,8 +65,8 @@ typeSettings = {
         "lineCommentStartPattern": re.compile(r'\s*//'),    ## used to find header blocks made by line comments
         "lineCommentEndPattern": None,
         "headerStartLine": "/*\n",   ## inserted before the first header text line
-        "headerEndLine": " */\n",    ## inserted after the last header text line
-        "headerLinePrefix": " * ",   ## inserted before each header text line
+        "headerEndLine": "*/\n",    ## inserted after the last header text line
+        "headerLinePrefix": "* ",   ## inserted before each header text line
         "headerLineSuffix": None,            ## inserted after each header text line, but before the new line
     },
     "script": {
@@ -89,8 +89,8 @@ typeSettings = {
         "lineCommentStartPattern": None,    ## used to find header blocks made by line comments
         "lineCommentEndPattern": None,
         "headerStartLine": "<!--\n",   ## inserted before the first header text line
-        "headerEndLine": "  -->\n",    ## inserted after the last header text line
-        "headerLinePrefix": "-- ",   ## inserted before each header text line
+        "headerEndLine": "-->\n",    ## inserted after the last header text line
+        "headerLinePrefix": "- ",   ## inserted before each header text line
         "headerLineSuffix": None            ## inserted after each header text line, but before the new line
     },
     "sql": {
@@ -214,6 +214,8 @@ def for_type(templatelines,type):
         tmp = l
         if headerLinePrefix is not None:
             tmp = headerLinePrefix + tmp
+            tmp = tmp.rstrip()
+            tmp = tmp + "\n"
         if headerLineSuffix is not None:
             tmp = tmp + headerLineSuffix
         lines.append(tmp)
